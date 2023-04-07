@@ -8,7 +8,7 @@ type data = {
   email: string;
 };
 
-export class Userenti {
+export class User {
   private id: string;
   private firstName: string;
   private lastName: string;
@@ -31,5 +31,9 @@ export class Userenti {
       email: this.email,
       password: this.password,
     };
+  }
+
+  public setPassword(pass: string) {
+    this.password = pass;
   }
 }
