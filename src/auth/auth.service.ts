@@ -18,8 +18,8 @@ export class AuthService {
     });
     if (!userExists) throw new Error('Usuario não encontrado!');
     const isPassValid = await this.encrypterService.compare(
-      data.password,
       userExists.password,
+      data.password,
     );
     if (!isPassValid) throw new Error('A senha é invalida!');
     return true;
