@@ -11,9 +11,33 @@ datasource db {
 }
 
 model User {
-  id        String @id() @default(uuid())
+  id        String   @id() @default(uuid())
   firstName String
   lastName  String
   email     String
   password  String
+  cretedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deleted   Boolean  @default(false)
+
+  @@map("users")
+}
+
+model Recipes {
+  id          String   @id
+  title       String
+  description String
+  ingredients String[]
+  steps       String[]
+  totalTime   Int
+  servings    Int
+  author      String
+  source      String
+  tags        String[]
+  image       String
+  cretedAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deleted     Boolean  @default(false)
+
+  @@map("recipes")
 }
