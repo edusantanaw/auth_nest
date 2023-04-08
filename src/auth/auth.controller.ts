@@ -5,17 +5,20 @@ import {
   HttpException,
   HttpStatus,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDTO } from './dto/auth';
 import { SigninDTO } from './dto/signin';
+import { AuthGuard } from './auth.guard';
 
 @Controller('/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @HttpCode(200)
-  @Post('/login')
+  @UseGuards(AuthGuard)
+  @Post('/signin')
   public async login(@Body() data: AuthDTO): Promise<unknown> {
     try {
       const response = await this.authService.auth(data);
@@ -25,7 +28,7 @@ export class AuthController {
     }
   }
 
-  @Post('/signin')
+  @Post('/signup')
   public async signin(@Body() data: SigninDTO) {
     try {
       const response = await this.authService.create(data);
