@@ -13,4 +13,9 @@ export class RecipeService {
     });
     return createdRecipe;
   }
+
+  public async loadAll() {
+    const recipes = await this.prismaService.recipes.findMany();
+    return recipes;
+  }
 }
